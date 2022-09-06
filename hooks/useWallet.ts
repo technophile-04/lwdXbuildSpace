@@ -14,7 +14,6 @@ export const useWallet = () => {
 	>('');
 	const POLYGON_RPC_URL = 'https://polygon-rpc.com';
 	const [isCorrectNetwork, setIsCorrectNetwork] = useState<Boolean>(false);
-	const [chainId, setChainId] = useState<number>(0);
 
 	// --------------------------------------------------
 	// Change network
@@ -32,7 +31,7 @@ export const useWallet = () => {
 						method: 'wallet_addEthereumChain',
 						params: [
 							{
-								chainName: 'Arbitrum',
+								chainName: 'Polygon',
 								chainId: ethers.utils.hexValue(137),
 								nativeCurrency: {
 									name: 'MATIC',
@@ -93,7 +92,6 @@ export const useWallet = () => {
 			const accounts = await ethereum.request({ method: 'eth_accounts' });
 
 			if (accounts && Array.isArray(accounts)) {
-				// Here you can access accounts[0]
 				if (accounts.length > 0) {
 					setCurrentAccount(accounts[0]);
 					console.log(accounts);

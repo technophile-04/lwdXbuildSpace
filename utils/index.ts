@@ -60,8 +60,9 @@ export const fetchLWD3Nfts = async (address: string) => {
 
 	return lwdNftData;
 };
+
 // --------------------------------------------------
-// Function to fetch BuildSpace
+// Function to fetch BuildSpace NFTs
 // --------------------------------------------------
 export const fetchBuildSpaceNfts = async (address: string) => {
 	const nftsForOwner = await alchemy.nft.getNftsForOwner(
@@ -97,9 +98,14 @@ export const fetchBuildSpaceNfts = async (address: string) => {
 	return buildSpaceData;
 };
 
+// --------------------------------------------------
+// Truncate address
+// --------------------------------------------------
 const truncateRegex = /^(0x[a-zA-Z0-9]{4})[a-zA-Z0-9]+([a-zA-Z0-9]{4})$/;
 export const truncateEthAddress = (address: string) => {
 	const match = address?.match(truncateRegex);
 	if (!match) return address;
 	return `${match[1]}…${match[2]}`;
 };
+
+export * from './rainbowKit';

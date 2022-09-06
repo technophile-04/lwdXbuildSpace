@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useAccount } from 'wagmi';
 import { useWallet } from '../../hooks';
 import { Metadata } from '../../utils';
 
@@ -18,7 +19,7 @@ export const Cards = ({ fetchNFTs }: Props) => {
 	const [loading, setLoading] = useState(false);
 	const [selectedNft, setSelectedNft] = useState<number>(-1);
 
-	const { currentAccount } = useWallet();
+	const { address } = useAccount();
 
 	function toggleModal(i: number) {
 		if (i >= 0) {
@@ -28,15 +29,15 @@ export const Cards = ({ fetchNFTs }: Props) => {
 	}
 
 	useEffect(() => {
-		if (currentAccount) {
+		if (address) {
 			(async () => {
 				setLoading(true);
-				let data = await fetchNFTs(currentAccount);
+				let data = await fetchNFTs(address);
 				setNfts(data);
 				setLoading(false);
 			})();
 		}
-	}, [currentAccount, fetchNFTs]);
+	}, [address, fetchNFTs]);
 
 	return (
 		<div className="grid grid-cols-1  sm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4 gap-6 justify-center max-w-6xl gap-x-6 gap-y-10 my-10">
@@ -52,7 +53,7 @@ export const Cards = ({ fetchNFTs }: Props) => {
 						nft={nft}
 						key={index + nft.name}
 						toggleModal={() => toggleModal(index)}
-						ownerAddress={currentAccount!}
+						ownerAddress={address!}
 					/>
 				))
 			)}
