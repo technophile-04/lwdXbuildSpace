@@ -1,26 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useWallet } from '../../hooks';
-import { fetchLWD3Nfts, Metadata } from '../../utils';
+import { Metadata } from '../../utils';
 
 import { CardsLoader } from './CardsLoader';
 import Modal from './Modal';
 import NftCard from './NFTCard';
 
-const loaders = [1, 2, 3, 4, 5];
+const loaders = [1, 2, 3, 4];
 
-export const Cards = () => {
+interface Props {
+	fetchNFTs: Function;
+}
+
+export const Cards = ({ fetchNFTs }: Props) => {
 	const [nfts, setNfts] = useState<Metadata[]>([]);
 	const [showModal, setShowModal] = useState<Boolean>(false);
 	const [loading, setLoading] = useState(false);
 	const [selectedNft, setSelectedNft] = useState<number>(-1);
 
 	const { currentAccount } = useWallet();
-
-	useEffect(() => {
-		if (currentAccount) {
-			fetchLWD3Nfts(currentAccount);
-		}
-	}, [currentAccount]);
 
 	function toggleModal(i: number) {
 		if (i >= 0) {
@@ -29,8 +27,19 @@ export const Cards = () => {
 		setShowModal((prevState) => !prevState);
 	}
 
+	useEffect(() => {
+		if (currentAccount) {
+			(async () => {
+				setLoading(true);
+				let data = await fetchNFTs(currentAccount);
+				setNfts(data);
+				setLoading(false);
+			})();
+		}
+	}, [currentAccount, fetchNFTs]);
+
 	return (
-		<div className="grid grid-cols-4 gap-6 justify-center max-w-6xl gap-x-6 gap-y-10 my-10">
+		<div className="grid grid-cols-1  sm:grid-cols-2  md:grid-cols-3 xl:grid-cols-4 gap-6 justify-center max-w-6xl gap-x-6 gap-y-10 my-10">
 			{loading ? (
 				loaders.map((count) => <CardsLoader key={count} />)
 			) : nfts.length === 0 ? (

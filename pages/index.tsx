@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { Cards } from '../components/Cards';
 import { useWallet } from '../hooks';
+import { fetchBuildSpaceNfts, fetchLWD3Nfts } from '../utils';
 
 const Home: NextPage = () => {
 	const { currentAccount, connectWallet } = useWallet();
@@ -14,7 +15,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="App">
-				<div className="container w-[80%] m-auto mt-6">
+				<div className="container w-[80%] m-auto mt-6 mb-5">
 					{/* Heading */}
 					<p className="m-0 text-center font-bold text-3xl text-white">
 						Learn Web3 DAO
@@ -22,7 +23,17 @@ const Home: NextPage = () => {
 					<p className="text-gray-400 m-1 mt-0 text-center">
 						Proof of Knowledge NFTs
 					</p>
-					<Cards />
+					<Cards fetchNFTs={fetchLWD3Nfts} />
+				</div>
+				<div className="container w-[80%] m-auto mt-6">
+					{/* Heading */}
+					<p className="m-0 text-center font-bold text-3xl text-white">
+						BuildSpace
+					</p>
+					<p className="text-gray-400 m-1 mt-0 text-center">
+						Proof of Knowledge NFTs
+					</p>
+					<Cards fetchNFTs={fetchBuildSpaceNfts} />
 				</div>
 			</div>
 		</>

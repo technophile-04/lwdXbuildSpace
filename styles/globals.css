@@ -15,11 +15,11 @@ body {
 }
 
 .gradient-bg-card {
-	/* background: linear-gradient(135deg, #c56cd6 0%, #3425af 100%); */
+	background: linear-gradient(135deg, #c56cd6 0%, #3425af 100%);
 	/* background: linear-gradient(135deg, #17dbfe 0%, #4d12bc 100%); */
 	/* background: linear-gradient(135deg, #501aa6 0%, #a1b5fb 100%); */
 	/* background: linear-gradient(135deg, #ce9ffc 0%, #7367f0 100%); */
-	background: linear-gradient(135deg, #16ead8 0%, #6077ea 100%);
+	/* background: linear-gradient(135deg, #16ead8 0%, #6077ea 100%); */
 }
 
 .gradient-bg-card-card {
