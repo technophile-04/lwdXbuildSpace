@@ -30,9 +30,14 @@ const Home: NextPage = () => {
 				<div className="App">
 					<div className="container w-[80%] m-auto mt-6 mb-5">
 						{/* Heading */}
-						<p className="m-0 text-center font-bold text-3xl text-white">
-							Learn Web3 DAO
-						</p>
+						<div className="flex justify-center items-center">
+							<p className="m-0 text-center font-bold text-3xl text-white flex-1 ml-[15.25rem]">
+								Learn Web3 DAO
+							</p>
+							<div className="justify-self-end">
+								<ConnectButton />
+							</div>
+						</div>
 						<p className="text-gray-400 m-1 mt-0 text-center">
 							Proof of Knowledge NFTs
 						</p>

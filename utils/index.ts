@@ -22,15 +22,14 @@ export interface Metadata {
 	attributes?: Attribute[];
 	description?: string;
 	image: string;
+	owner: string;
 }
 
 // --------------------------------------------------
 // Function to fetch LWD Nfts
 // --------------------------------------------------
 export const fetchLWD3Nfts = async (address: string) => {
-	const nftsForOwner = await alchemy.nft.getNftsForOwner(
-		'0x0d1f2bd5351a65a78ac0bef3c8faef643c046508'
-	);
+	const nftsForOwner = await alchemy.nft.getNftsForOwner(address);
 
 	const lwdTokenIdsMinted = [];
 	for (const nft of nftsForOwner.ownedNfts) {
@@ -54,6 +53,7 @@ export const fetchLWD3Nfts = async (address: string) => {
 				name: nftMetadata.title,
 				image: nftMetadata.media[0].gateway,
 				description: nftMetadata.description,
+				owner: address,
 			};
 		})
 	);
@@ -65,9 +65,7 @@ export const fetchLWD3Nfts = async (address: string) => {
 // Function to fetch BuildSpace NFTs
 // --------------------------------------------------
 export const fetchBuildSpaceNfts = async (address: string) => {
-	const nftsForOwner = await alchemy.nft.getNftsForOwner(
-		'0x55b9CB0bCf56057010b9c471e7D42d60e1111EEa'
-	);
+	const nftsForOwner = await alchemy.nft.getNftsForOwner(address);
 
 	const lwdTokenIdsMinted = [];
 	for (const nft of nftsForOwner.ownedNfts) {
@@ -91,6 +89,7 @@ export const fetchBuildSpaceNfts = async (address: string) => {
 				name: nftMetadata.title,
 				image: nftMetadata.media[0].gateway,
 				description: nftMetadata.description,
+				owner: address,
 			};
 		})
 	);

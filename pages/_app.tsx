@@ -17,13 +17,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 		return null;
 	}
 
-	// RainbowKit hydration problem
+	// used for rainbowKit hydration problem
 	if (typeof window === 'undefined') {
 		return <></>;
 	} else {
 		return (
 			<WagmiConfig client={wagmiClient}>
-				<RainbowKitProvider chains={chainRB}>
+				<RainbowKitProvider chains={chainRB} coolMode>
 					<Component {...pageProps} />
 					<Toaster />
 				</RainbowKitProvider>

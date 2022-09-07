@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
-import { useWallet } from '../../hooks';
 import { Metadata } from '../../utils';
 
 import { CardsLoader } from './CardsLoader';
@@ -44,7 +43,7 @@ export const Cards = ({ fetchNFTs }: Props) => {
 			{loading ? (
 				loaders.map((count) => <CardsLoader key={count} />)
 			) : nfts.length === 0 ? (
-				<h1 className="text-center text-4xl text-white w-full">
+				<h1 className="text-center text-transparent text-4xl text-white w-full bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
 					No NFTs found
 				</h1>
 			) : (

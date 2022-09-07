@@ -1,12 +1,6 @@
-import { MetaMaskInpageProvider } from '@metamask/providers';
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-declare global {
-	interface Window {
-		ethereum?: MetaMaskInpageProvider;
-	}
-}
 
 export const useWallet = () => {
 	const [currentAccount, setCurrentAccount] = useState<
@@ -118,11 +112,11 @@ export const useWallet = () => {
 				setIsCorrectNetwork(chainId === 137);
 			};
 
-			ethereum.on('accountsChanged', (...accounts: unknown[]) => {
+			ethereum.on!('accountsChanged', (...accounts: unknown[]) => {
 				console.log('accounts cahnged');
 				setCurrentAccount(accounts[0] as string);
 			});
-			ethereum.on('chainChanged', function (networkId) {
+			ethereum.on!('chainChanged', function () {
 				window.location.reload();
 			});
 			checkIfWalletIsConnected();
