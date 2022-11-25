@@ -1,6 +1,6 @@
 # POK Viewer
 
-## View You LW3D and BuildSpace POK on one App 😎 !
+## View You LW3D and BuildSpace POK NFTs on one App 😎 !
 
 ---
 
